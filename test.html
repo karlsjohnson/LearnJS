@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+</style>
+<body onkeydown="keydownFunction()">
+
+<p><button onclick="myMove()">Click Me</button></p>
+
+<div id ="container">
+  <div id ="animate"></div>
+</div>
+<h1 id="h101">Click on this text!</h1>
+<button onclick="changeText(h101)">Try it</button>
+
+
+<div onmouseover="mOver(this)" onmouseout="mOut(this)"
+style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+Mouse Over Me</div>
+
+<script>
+function myMove() {
+  let id = null;
+  const elem = document.getElementById("animate");
+  let pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+      pos = 0;
+      elem.style.top = pos + "px";
+      elem.style.left = pos + "px";
+    } else {
+      pos = pos + 1;
+      elem.style.top = pos + "px";
+      elem.style.left = pos + "px";
+    }
+  }
+}
+function changeText(id) {
+  id.innerHTML = "Ooops!";
+}
+function mOver(obj) {
+  obj.innerHTML = "Thank You";
+  obj.style.color = "#ffff00";
+  obj.style.backgroundColor = "#0000ff";
+}
+
+function mOut(obj) {
+  obj.innerHTML = "Mouse Over Me"
+  obj.style.color= "#000000"
+  obj.style.backgroundColor = "#00ff00";
+}
+function keydownFunction() {
+  document.body.style.backgroundColor = "yellow";
+}
+</script>
+
+</body>
+</html>
